@@ -1,0 +1,21 @@
+class Solution:
+    def getSecondLargest(self, arr):
+        Max = arr[0]
+        
+        # Find maximum
+        for i in arr:
+            if i > Max:
+                Max = i
+        
+        SMax = float("-inf")
+        
+        # Find second maximum
+        for i in arr:
+            if i > SMax and i != Max:
+                SMax = i
+        
+        # If no second largest found
+        if SMax == float("-inf"):
+            return -1
+        
+        return SMax
