@@ -1,0 +1,10 @@
+nums = [1, 2, 2, 3, 3, 3]
+
+freq = {}
+
+for i in nums:
+    freq[i] = freq.get(i, 0) + 1
+
+for key in freq:
+    if freq[key] == 1:
+        print(key)
