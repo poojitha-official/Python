@@ -1,0 +1,39 @@
+def dfs(v, adj, visited, parent):
+    
+    # Mark the current node as visited
+    visited[v] = True
+
+    # Recur for all the vertices adjacent to this vertex
+    for neighbor in adj[v]:
+        
+        # If an adjacent vertex is not visited, 
+        # then recur for that adjacent
+        if not visited[neighbor]:
+            if dfs(neighbor, adj, visited, v):
+                return True
+                
+        # If an adjacent vertex is visited and is not
+        # parent of current vertex,
+        # then there exists a cycle in the graph.
+        elif neighbor != parent:
+            return True
+
+    return False
+
+# Returns true if the graph contains a cycle, else false.
+def isCycle(adj):
+    V = len(adj)
+    # Mark all the vertices as not visited
+    visited = [False] * V
+
+    for u in range(V):
+        if not visited[u]:
+            if dfs(u, adj, visited, -1):
+                return True
+
+    return False
+
+if __name__ == "__main__":
+    adj = [[1, 2],[0, 2],[0, 1, 3],[2]]
+
+    print("true" if isCycle(adj) else "false")
